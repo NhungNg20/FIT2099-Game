@@ -1,0 +1,19 @@
+﻿GroundSmashAction
+
+Action associated with a player movement onto a high ground object while under the influence of a power star. This action is an allowable action of the ground class iff:
+1. CanActorEnter(actor)returns true. (useful to set out of bounds)
+2. Ground object has attribute elevated = true
+3. Actor has Capability Status.Godzilla (Set by ConsumeStarAction)
+
+To use, the Ground class allowableActions method must be overridden to return MoveActorAction,GroundSmashAction, or empty ActionList based on the above.
+GroundSmashAction has the same instance variables as  MoveActorAction, namely destination location, direction and hotkey.
+
+When GroundSmashAction.execute(actor, map) is called, the destination location is first modified to contain Dirt ground and containing Coin item. This is acheived by calling the location’s setGround and addItem methods. A MoveActorAction object is then instantiated and it’s execute method called. The execute method will follow the pseudocode:
+
+GroundSmashAction.execute(actor,map)
+	toLocation.setGround(new Dirt())
+	toLocation.addItem(new Coin(5) )
+	moveAction = new MoveActorAction( toLocation, direction)
+	moveAction.execute(actor,map)
+	return
+

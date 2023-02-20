@@ -1,0 +1,4 @@
+﻿SuperMushroom and PowerStar implement the Consumable interface. 
+The consumable interface has two methods,   consume(Actor actor) and resetEffect(Actor actor).
+Consume() is called with  an actor as argument, and is responsible for setting all of the effects of a magical item. resetEffect(Actor actor) is responsible for undoing what consume changed.
+This interface allows for an item to effect on an actor and then to return to the normal state.

@@ -1,0 +1,18 @@
+﻿TradeAction(Actor player, Item item, int value)
+A trade action subtracts the value of the traded item from the actor’s wallet and  ads the item to the inventory. 
+TradeAction is an allowable action of Toad and an ActionList of trade actions is returned by calling toad’s allowableActions method while Player is neighbouring.
+
+The TradeAction execution will conform to the following pseudocode:
+
+TradeAction.execute(actor,map)
+	wallet = actor.getWallet()
+	if (value > wallet.getBalence() )
+		return message "You don't have enough coins!"
+	wallet.deduct(value)
+	player.addToInventory(item)
+	return message “[actor] sells [item] to [player] for $[value]”
+
+
+[PickUpCoinAction(Actor player,Coin) 14/04 Does not work! regular PickUpItemAction must be used and Player modified to make wallet updates when addToInventory called!]
+[Similar to PickUpItemAction, except the coin is not placed into an actor's inventory. Instead the balance (int) in a Player’s Wallet is increased. Wallet is a separate Class used by Player. This allows Open-Close]
+
